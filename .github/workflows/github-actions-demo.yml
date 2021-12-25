@@ -20,11 +20,16 @@ jobs:
         run: poetry run pre-commit run --all
       - name: Run tests
         run: poetry run pytest --junitxml=report.xml --cov=python_project --cov-config=".coveragerc"
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          verbose: true
-          fail_ci_if_error: true
+          files: report.xml
+
+      #- name: Upload coverage to Codecov
+      #  uses: codecov/codecov-action@v1
+      #  with:
+      #    verbose: true
+      #    fail_ci_if_error: true
 #  Pages:
 #    runs-on: ubuntu-latest
 #    strategy:
