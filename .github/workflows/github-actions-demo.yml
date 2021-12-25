@@ -28,9 +28,10 @@ jobs:
         run: poetry run pytest --junitxml=report.xml --cov=python_project --cov-config=".coveragerc"
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action/composite@v1
-        if: always()
-        with:
-          files: report.xml
+          if: success() || failure()        # run this step even if previous step failed
+          with:
+            name: test-results
+            path: report.xml
 
 #  Pages:
 #    runs-on: ubuntu-latest
