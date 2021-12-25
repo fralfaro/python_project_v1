@@ -1,7 +1,8 @@
 name: GitHub Actions
 on: [push]
 jobs:
-  jobs:
+  precommit:
+    name: Static Analysis
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,15 +19,18 @@ jobs:
         run: poetry install
       - name: Run precommit
         run: poetry run pre-commit run --all
+  job2:
+    name: Testing
+    needs: precommit
+    runs-on: ubuntu-latest
+    steps:
       - name: Run tests
-        run: poetry run  pytest --cache-clear --cov=python_project > pytest-coverage.txt
-      - name: Publish Unit Test Results
-        uses: coroo/pytest-coverage-commentator@v1.0.2
-#      - name: Upload pytest test results
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: pytest-results-${{ matrix.python-version }}
-#          path: junit/test-results-${{ matrix.python-version }}.xml
+        run: poetry run pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov=python_project --cov-config=".coveragerc"
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: pytest-results-${{ matrix.python-version }}
+          path: junit/test-results-${{ matrix.python-version }}.xml
 
 
 #  Pages:
