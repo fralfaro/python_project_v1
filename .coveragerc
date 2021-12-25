@@ -1,0 +1,6 @@
+[report]
+file = tests/*
+
+exclude_lines:
+    pragma: no cover
+    @abc.abstractmethod

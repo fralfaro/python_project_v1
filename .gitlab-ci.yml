@@ -1,0 +1,34 @@
+image: "python:3.8"
+stages:
+  - Static Analysis
+  - Test
+  - Publish Developer Docs
+
+before_script:
+  - python --version
+  - pip install poetry
+  - poetry install
+
+precommit:
+  stage: Static Analysis
+  script:
+    # Run pre-commit: Fleke8 and Black
+    - poetry run pre-commit run --all
+
+test:
+  stage: Test
+  script:
+    # Run tests
+    - poetry run pytest --junitxml=report.xml --cov=python_project --cov-config=".coveragerc"
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+
+pages:
+  stage: Publish Developer Docs
+  script:
+    - poetry run sphinx-build -b html ./docs public
+  artifacts:
+    paths:
+      - public

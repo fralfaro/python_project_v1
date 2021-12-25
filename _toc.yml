@@ -1,0 +1,17 @@
+format: jb-book
+root: index
+parts:
+  - caption:  "Lecture_01"
+    chapters:
+      - file: python_project/lectures/lecture_011
+      - file: python_project/lectures/lecture_012
+
+  - caption: "Lecture_02"
+    chapters:
+      - file: python_project/lectures/lecture_021
+      - file: python_project/lectures/lecture_022
+
+  - caption: "Lecture_03"
+    chapters:
+      - file: python_project/lectures/lecture_031
+      - file: python_project/lectures/lecture_032
