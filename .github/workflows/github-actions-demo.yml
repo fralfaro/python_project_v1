@@ -19,13 +19,9 @@ jobs:
       - name: Run precommit
         run: poetry run pre-commit run --all
       - name: Run tests
-        run: poetry run pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml --cov=python_project --cov-config=".coveragerc"
+        run: poetry run  pytest --cache-clear --cov=python_project test/ > pytest-coverage.txt
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          name: pytest-results-${{ matrix.python-version }}
-          path: junit/test-results-${{ matrix.python-version }}.xml
+        uses: coroo/pytest-coverage-commentator@v1.0.2
 #      - name: Upload pytest test results
 #        uses: actions/upload-artifact@v2
 #        with:
