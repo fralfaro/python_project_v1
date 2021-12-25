@@ -19,7 +19,7 @@ jobs:
       - name: Run precommit
         run: poetry run pre-commit run --all
       - name: Run tests
-        run: poetry run  pytest --cache-clear --cov=python_project test/ > pytest-coverage.txt
+        run: poetry run  pytest --cache-clear --cov=python_project > pytest-coverage.txt
       - name: Publish Unit Test Results
         uses: coroo/pytest-coverage-commentator@v1.0.2
 #      - name: Upload pytest test results
