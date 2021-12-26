@@ -27,7 +27,6 @@ jobs:
       - name: Build Documentation
         run: poetry run sphinx-build -b html ./docs public
       - name: GitHub Pages action
-        uses: peaceiris/actions-gh-pages@v3.6.1
+      - uses: ammaraskar/sphinx-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          docs-folder: "public"
