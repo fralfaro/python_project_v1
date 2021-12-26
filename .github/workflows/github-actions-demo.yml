@@ -8,6 +8,7 @@ jobs:
         python-version: [3.8]
     steps:
       - uses: actions/checkout@v2
+        run: ls
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -24,10 +25,11 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: report.xml
-      #- name: Build Documentation
-      #  run: poetry run sphinx-build -b html ./docs public
+      - name: Build Documentation
+        run: poetry run sphinx-build -b html ./docs public
       - name: GitHub Pages action
-        uses: ammaraskar/sphinx-action@master
+        run: ls
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          docs-folder: "docs/"
-          build-command: "sphinx-build -b html . _build"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
