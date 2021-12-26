@@ -8,7 +8,6 @@ jobs:
         python-version: [3.8]
     steps:
       - uses: actions/checkout@v2
-        run: ls
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -28,7 +27,6 @@ jobs:
       - name: Build Documentation
         run: poetry run sphinx-build -b html ./docs public
       - name: GitHub Pages action
-        run: ls
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
