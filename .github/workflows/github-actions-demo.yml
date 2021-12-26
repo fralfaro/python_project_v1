@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  jobs:
+  ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,11 +29,12 @@ jobs:
           files: report.xml
       - name: Build Documentation
         run: poetry run sphinx-build -b html ./docs public
-      - name: GitHub Pages action
-        uses: peaceiris/actions-gh-pages@v3.6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+      - name: github pages deploy
+        uses: peaceiris/actions-gh-pages@v2.3.1
+        env:
+          PERSONAL_TOKEN: ${{ secrets.PAT }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: public
 
       #- name: Upload coverage to Codecov
       #  uses: codecov/codecov-action@v1
