@@ -24,9 +24,6 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: report.xml
-      - name: Coverage Badge
-        uses: tj-actions/coverage-badge-py@v1.2
-      - name: Build Documentation
         run: poetry run sphinx-build -b html ./docs public
       - name: GitHub Pages action
         uses: peaceiris/actions-gh-pages@v3
