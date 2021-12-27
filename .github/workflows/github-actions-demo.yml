@@ -16,8 +16,8 @@ jobs:
         run: pip install poetry
       - name: Activate venv
         run: poetry install
-      #- name: Run precommit
-      #  run: poetry run pre-commit run --all
+      - name: Run precommit
+        run: poetry run pre-commit run --all
       - name: Run tests
         run: poetry run pytest --junitxml=report.xml --cov=python_project --cov-config=".coveragerc"
       - name: Publish Unit Test Results
