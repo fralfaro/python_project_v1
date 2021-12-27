@@ -19,11 +19,7 @@ jobs:
       - name: Run precommit
         run: poetry run pre-commit run --all
       - name: Run tests
-        run: pytest --cov=./ --cov-report=xml
-      #- name: Publish Unit Test Results
-      #  uses: EnricoMi/publish-unit-test-result-action@v1
-      #  with:
-      #    files: report.xml
+        run: poetry run pytest --cov=./ --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
