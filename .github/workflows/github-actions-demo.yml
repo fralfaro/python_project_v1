@@ -19,16 +19,16 @@ jobs:
       - name: Run precommit
         run: poetry run pre-commit run --all
       - name: Run tests
-        run: poetry run pytest --junitxml=report.xml --cov=python_project --cov-config=".coveragerc"
+        run: poetry run pytest --cov=./ --cov-report=xml
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: report.xml
+          files: coverage.xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: report.xml
+          files: coverage.xml
       - name: Build Documentation
         run: poetry run sphinx-build -b html ./docs public
       - name: GitHub Pages action
