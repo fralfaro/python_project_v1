@@ -23,12 +23,11 @@ jobs:
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          files: coverage.xml
+          files: ./coverage.xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: coverage.xml
       - name: Build Documentation
         run: poetry run sphinx-build -b html ./docs public
       - name: GitHub Pages action
