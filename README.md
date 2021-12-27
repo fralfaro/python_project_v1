@@ -12,7 +12,6 @@
 <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/documentation-sphinx-black"></a>
 
 
-Basic example time series
 
 
 
