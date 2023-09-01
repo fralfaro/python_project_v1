@@ -1,29 +1,30 @@
 name: CI
 on: [push]
+
 jobs:
-  pre-commit:
+  common-setup:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.8 ]
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
       - name: Install dependencies
-        run: pip install poetry
-      - name: Activate venv
-        run: poetry install
+        run: |
+          pip install poetry
+          poetry install
+
+  pre-commit:
+    needs: common-setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Run precommit
         run: poetry run pre-commit run --all
 
   testing:
+    needs: common-setup
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
     steps:
       - name: Run tests
         run: poetry run pytest --cov=./ --cov-report=xml
@@ -31,6 +32,11 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  documentation:
+    needs: common-setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Build Documentation
         run: poetry run mkdocs build --site-dir public
       - name: GitHub Pages action
