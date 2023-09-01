@@ -19,6 +19,8 @@ jobs:
     needs: common-setup
     runs-on: ubuntu-latest
     steps:
+      - name: Activate Poetry virtual environment
+        run: poetry shell
       - name: Run precommit
         run: pre-commit run --all
 
