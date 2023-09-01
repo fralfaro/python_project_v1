@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from pydantic import validator
 
 from .base import ForecastSolver, SolverParams

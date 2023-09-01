@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Top-level package for python_project."""
 
 __author__ = """Francisco Alfaro"""

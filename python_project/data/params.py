@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import timedelta, date
 from pydantic import BaseModel, validator
 

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 from pydantic import BaseModel, validator
 import pandas as pd

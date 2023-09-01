@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from diagrams import Diagram, Cluster
 from diagrams.programming.language import Python
 from diagrams.onprem.inmemory import Redis

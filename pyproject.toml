@@ -37,9 +37,3 @@ python_project = 'python_project.cli.cli:entry_point'
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
-
-
-
-
-
-

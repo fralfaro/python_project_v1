@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from pandas._libs.tslibs.timestamps import Timestamp
 from pydantic import BaseModel, validator
 

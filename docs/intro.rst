@@ -12,7 +12,3 @@ simple model applying software developer skills (TDD, documentation, linters, et
 
 .. note::
     The project is available in following `link <https://gitlab.com/FAAM/st_time_series>`_.
-
-
-
-

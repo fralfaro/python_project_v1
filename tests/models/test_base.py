@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from datetime import date, datetime
 import pandas as pd
 import pytest
@@ -26,7 +25,6 @@ from python_project.models.base import ForecastSolver
     ],
 )
 def test_ForecastSolver_forecaster(mocker, df, expected):
-
     class_forecast = mocker.MagicMock()
     forecast_problem = mocker.MagicMock()
 
@@ -120,7 +118,6 @@ def test_ForecastSolver_run_forecast(df, expected, mocker):
     ],
 )
 def test_forecast_test_train(df, ds, expected):
-
     params = ForecastParams(
         forecast_start=ds,
     )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .base import MetricCalculator
 import pandas as pd
 import numpy as np
@@ -7,7 +6,6 @@ np.seterr(divide="ignore", invalid="ignore")
 
 
 class StandardMetrics(MetricCalculator):
-
     # metrics
     # a) Scale-dependent errors
     @staticmethod
@@ -16,7 +14,7 @@ class StandardMetrics(MetricCalculator):
         Mean absolute error (MAE):
 
         .. math::
-            MAE =\\dfrac{\\sum _{i=1}^{n}|y_{i}-\hat{y}_{i}|}{n}
+            MAE =\\dfrac{\\sum _{i=1}^{n}|y_{i}-\\hat{y}_{i}|}{n}
 
         :param targets: real value
         :param predictions: predicted value
@@ -31,14 +29,14 @@ class StandardMetrics(MetricCalculator):
         Mean squared error (MSE):
 
         .. math::
-            MSE =\\dfrac{\\sum _{i=1}^{n}(y_{i}-\hat{y}_{i})^2}{n}
+            MSE =\\dfrac{\\sum _{i=1}^{n}(y_{i}-\\hat{y}_{i})^2}{n}
 
         :param targets: real value
         :param predictions: predicted value
         :return: metrics value
         """
         error = predictions - targets
-        return round((error ** 2).mean(), 4)
+        return round((error**2).mean(), 4)
 
     @staticmethod
     def rmse(targets: np.ndarray, predictions: np.ndarray) -> float:
@@ -46,14 +44,14 @@ class StandardMetrics(MetricCalculator):
         Root mean squared error (RMSE)
 
         .. math::
-            RMSE =\\sqrt{\\dfrac{\\sum _{i=1}^{n}(y_{i}-\hat{y}_{i})^2}{n}}
+            RMSE =\\sqrt{\\dfrac{\\sum _{i=1}^{n}(y_{i}-\\hat{y}_{i})^2}{n}}
 
         :param targets: real value
         :param predictions: predicted value
         :return: metrics value
         """
         error = predictions - targets
-        return round(np.sqrt((error ** 2).mean()), 4)
+        return round(np.sqrt((error**2).mean()), 4)
 
     # b) Percentage errors
     @staticmethod
@@ -62,8 +60,8 @@ class StandardMetrics(MetricCalculator):
         Mean absolute percentage error (MAPE):
 
         .. math::
-            MAPE =\\dfrac{100}{n}\sum _{i=1}^{n} \
-            \\left| \\dfrac{y_{i}-\hat{y}_{i}}{y_{i}} \\right|
+            MAPE =\\dfrac{100}{n}\\sum _{i=1}^{n} \
+            \\left| \\dfrac{y_{i}-\\hat{y}_{i}}{y_{i}} \\right|
 
 
         :param targets: real value
@@ -83,8 +81,8 @@ class StandardMetrics(MetricCalculator):
         Mean arctangent percentage error (MAAPE):
 
         .. math::
-            MAAPE =\\dfrac{100}{n}\sum _{i=1}^{n} \
-            arctan(\\left| \\dfrac{y_{i}-\hat{y}_{i}}{y_{i}} \\right|)
+            MAAPE =\\dfrac{100}{n}\\sum _{i=1}^{n} \
+            arctan(\\left| \\dfrac{y_{i}-\\hat{y}_{i}}{y_{i}} \\right|)
 
         :param targets: real value
         :param predictions: predicted value
@@ -106,7 +104,7 @@ class StandardMetrics(MetricCalculator):
 
         .. math::
             WMAPE = \\dfrac{\\sum _{i=1}^{n}\
-            |y_{i}-\hat{y}_{i}|}{\\sum _{i=1}^{n}|y_{i}|}
+            |y_{i}-\\hat{y}_{i}|}{\\sum _{i=1}^{n}|y_{i}|}
 
         :param targets: real value
         :param predictions: predicted value
@@ -126,8 +124,8 @@ class StandardMetrics(MetricCalculator):
         Modified mean absolute percentage error (MMAPE):
 
         .. math::
-            MMAPE = \\dfrac{100}{n}\sum _{i=1}^{n} \
-             \\dfrac{|y_{i}-\hat{y}_{i}|}{|y_{i}| + 1}
+            MMAPE = \\dfrac{100}{n}\\sum _{i=1}^{n} \
+             \\dfrac{|y_{i}-\\hat{y}_{i}|}{|y_{i}| + 1}
 
         :param targets: real value
         :param predictions: predicted value
@@ -144,8 +142,8 @@ class StandardMetrics(MetricCalculator):
         Symmetric mean absolute percentage error (SMAPE):
 
         .. math::
-            SMAPE =\\dfrac{100}{n}\sum _{i=1}^{n} \
-            \\dfrac{|y_{i}-\hat{y}_{i}|}{(|y_{i}| + |\hat{y}_{i}|)/2}
+            SMAPE =\\dfrac{100}{n}\\sum _{i=1}^{n} \
+            \\dfrac{|y_{i}-\\hat{y}_{i}|}{(|y_{i}| + |\\hat{y}_{i}|)/2}
 
         :param targets: real value
         :param predictions: predicted value

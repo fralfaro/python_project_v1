@@ -22,8 +22,8 @@ from python_project import __version__  # noqa
 
 # -- Project information -----------------------------------------------------
 
-project = u"python_project"
-copyright = u"2021, Francisco Alfaro"
+project = "python_project"
+copyright = "2021, Francisco Alfaro"
 
 # The full version, including alpha/beta/rc tags
 release = __version__

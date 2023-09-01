@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import pytest
 from pandas import DataFrame
 from pydantic import ValidationError
