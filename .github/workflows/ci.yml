@@ -1,11 +1,11 @@
-name: GitHub Actions - CI
+name: CI
 on: [push]
 jobs:
-  ci:
+  pre-commit:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [ 3.8 ]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -18,6 +18,13 @@ jobs:
         run: poetry install
       - name: Run precommit
         run: poetry run pre-commit run --all
+
+  testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
       - name: Run tests
         run: poetry run pytest --cov=./ --cov-report=xml
       - name: Upload coverage to Codecov
