@@ -13,7 +13,10 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
       - name: Export dependencies to requirements.txt
-        run: poetry export -f requirements.txt --output requirements.txt
+        env:
+          LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.9.17/x64/lib
+        run: |
+          poetry export -f requirements.txt --output requirements.txt
       - name: Install dependencies from requirements.txt
         run: pip install -r requirements.txt
 
