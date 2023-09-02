@@ -12,14 +12,16 @@ jobs:
           python-version: 3.8
       - name: Install Poetry
         run: pip install poetry
+      - name: Export dependencies to requirements.txt
+        run: poetry export -f requirements.txt --output requirements.txt
+      - name: Install dependencies from requirements.txt
+        run: pip install -r requirements.txt
 
   precommit:
     needs: install_dependencies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Activate venv
-        run: poetry install
       - name: Run precommit
         run: poetry run pre-commit run --all
 
@@ -28,8 +30,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Activate venv
-        run: poetry install
       - name: Run tests
         run: poetry run pytest --cov=./ --cov-report=xml
       - name: Upload coverage to Codecov
@@ -42,8 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Activate venv
-        run: poetry install
       - name: Build Documentation
         run: poetry run mkdocs build --site-dir public
       - name: GitHub Pages action
